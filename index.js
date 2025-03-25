@@ -13,9 +13,9 @@ app.use(express.json());
 app.use('/api', routes);
 
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('✅ MongoDB-д холбогдлоо'))
-  .catch(err => console.error('❌ Mongo холболтын алдаа:', err));
+  .then(() => console.log('✅ MongoDB-connected'))
+  .catch(err => console.error('❌ Mongo failed:', err));
 
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 Сервер http://localhost:${PORT} дээр ажиллаж байна`));
+app.listen(PORT, () => console.log(`🚀 Server http://localhost:${PORT} дээр ажиллаж байна`));

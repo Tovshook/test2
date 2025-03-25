@@ -1,34 +1,34 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-  //Ширээ
+  //table
   table: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Table',
     required: true
   },
 
-  //Захиалсан хоол
+  //order
   menu: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Menu',
     required: true
   },
 
-  // Зөөгч захиалга үүсгэсэн
+  // waiter
   orderedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
 
-  // Тогооч хийсэн
+  // chef cook
   cookedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
 
-  // Зөөгч хүргэсэн
+  // delivered by waiter
   servedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
