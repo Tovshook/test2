@@ -26,8 +26,10 @@ router.put('/:id',authenticateToken,  async (req, res) => {
     }
 
     res.status(200).json({
-      message: 'Хэрэглэгчийн мэдээлэл амжилттай шинэчлэгдлээ',
-      user: updatedUser
+      user: {
+        ...updatedUser.toJSON(),
+        password: undefined
+      }
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
