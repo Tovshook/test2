@@ -27,7 +27,10 @@ router.post('/', async (req, res) => {
 
     
 
-    res.status(200).json({ accessToken:  accessToken });
+    res.status(200).json({ accessToken:  accessToken, user: {
+      ...user.toJSON(),
+      password: undefined
+    } });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
