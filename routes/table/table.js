@@ -3,7 +3,7 @@ const { Table } = require('../../models');
 const router = express.Router();
 
 // POST /api/tables - Add a new table
-router.post('/', async (req, res) => {
+router.post('/create', async (req, res) => {
   try {
     const { number } = req.body;
     const newTable = new Table({ number });
@@ -15,10 +15,24 @@ router.post('/', async (req, res) => {
 });
 
 // GET /api/tables - List all tables
-router.get('/', async (req, res) => {
+
+router.get('/list', async (req, res) => {
   try {
-    const tables = await Table.find();
-    res.status(200).json(tables);
+    let { currentPage = 1, pageSize = 10 } = req.query;
+
+    currentPage = parseInt(currentPage);
+    pageSize = parseInt(pageSize);
+
+    const skip = (currentPage - 1) * pageSize;
+
+    const totalCount = await Table.countDocuments();
+
+    const items = await Table.find().skip(skip).limit(pageSize);
+
+    res.status(200).json({
+      rows: items,
+      count: totalCount
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

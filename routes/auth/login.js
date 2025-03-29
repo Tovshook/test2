@@ -11,12 +11,12 @@ router.post('/', async (req, res) => {
 
     const user = await User.findOne({ username });
     if (!user) {
-      return res.status(401).json({ message: 'Хэрэглэгч олдсонгүй' });
+      return res.status(401).json({ message: 'User not found' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(401).json({ message: 'Нууц үг буруу байна' });
+      return res.status(401).json({ message: 'incorrect password' });
     }
 
     const accessToken = jwt.sign(

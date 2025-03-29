@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
     const existingUser = await User.findOne({ email });
     
     if (existingUser) {
-      return res.status(400).json({ message: 'Хэрэглэгчийн нэр аль хэдийн бүртгэгдсэн байна' });
+      return res.status(400).json({ message: 'Username already registered' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
