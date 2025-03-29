@@ -14,24 +14,18 @@ const orderSchema = new mongoose.Schema({
     ref: 'Menu',
     required: true
   },
-
-  // waiter
-  orderedBy: {
+  // chef cook
+  cooked: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
-  },
-
-  // chef cook
-  cookedBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    required: false
   },
 
   // delivered by waiter
-  servedBy: {
+  served: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: false
   },
 
   status: {
